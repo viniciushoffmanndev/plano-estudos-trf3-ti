@@ -7,17 +7,39 @@
     <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Plano de Estudos - TRF3 (Analista de Sistemas)</h1>
-            <div class="progress-container">
-                <div class="progress-bar" id="progressBar"></div>
+    <div class="app-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>TRF3 TI</h2>
+                <p>Plano de Estudos</p>
             </div>
-            <p id="progressText">0% Concluído</p>
-        </header>
-        <main id="topicsContainer">
-            <!-- Renderizado via JS -->
-        </main>
+            <nav class="sidebar-nav">
+                <!-- SEGURANÇA OWASP: Removido o onclick inline. Uso de data-area -->
+                <button id="btnEspecificos" class="nav-btn active" data-area="Conhecimentos Específicos">
+                    Conhecimentos Específicos (36)
+                </button>
+                <button id="btnGerais" class="nav-btn" data-area="Conhecimentos Gerais">
+                    Conhecimentos Gerais (24)
+                </button>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="container">
+                <header>
+                    <h1 id="pageTitle">Conhecimentos Específicos</h1>
+                    <div class="progress-container">
+                        <div class="progress-bar" id="progressBar"></div>
+                    </div>
+                    <p id="progressText">0% Concluído</p>
+                </header>
+                <main id="topicsContainer">
+                    <!-- Renderizado via JS -->
+                </main>
+            </div>
+        </div>
     </div>
     <script src="/app.js"></script>
 </body>

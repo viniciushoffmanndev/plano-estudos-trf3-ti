@@ -1,21 +1,62 @@
-document.addEventListener("DOMContentLoaded", fetchTopics);
+let allTopics = [];
+let currentArea = "Conhecimentos Específicos"; // Estado inicial
+
+// Inicialização segura
+document.addEventListener("DOMContentLoaded", () => {
+    fetchTopics();
+    setupEventListeners();
+});
+
+// SEGURANÇA OWASP: Separação de comportamento (JS) da estrutura (HTML)
+function setupEventListeners() {
+    const btnEspecificos = document.getElementById("btnEspecificos");
+    const btnGerais = document.getElementById("btnGerais");
+
+    btnEspecificos.addEventListener("click", function() {
+        changeArea(this.getAttribute("data-area"));
+    });
+
+    btnGerais.addEventListener("click", function() {
+        changeArea(this.getAttribute("data-area"));
+    });
+}
 
 async function fetchTopics() {
     try {
         const response = await fetch('/api/topics/');
-        const topics = await response.json();
-        renderTopics(topics);
-        updateProgress(topics);
+        allTopics = await response.json();
+        updateUI();
     } catch (error) {
         console.error("Erro ao buscar tópicos:", error);
     }
 }
 
+function changeArea(area) {
+    currentArea = area;
+    
+    // Atualiza os botões visuais no sidebar
+    document.getElementById("btnEspecificos").classList.toggle("active", area === "Conhecimentos Específicos");
+    document.getElementById("btnGerais").classList.toggle("active", area === "Conhecimentos Gerais");
+    
+    // Atualiza o título (textContent é seguro contra XSS)
+    document.getElementById("pageTitle").textContent = area;
+    
+    updateUI();
+}
+
+function updateUI() {
+    const filteredTopics = allTopics.filter(t => t.area === currentArea);
+    renderTopics(filteredTopics);
+    updateProgress(filteredTopics);
+}
+
 function renderTopics(topics) {
     const container = document.getElementById('topicsContainer');
-    container.innerHTML = ''; // Limpa antes de renderizar
+    
+    // SEGURANÇA OWASP: Substitui container.innerHTML = ''; por replaceChildren()
+    // Isso é mais seguro e performático, pois não invoca o parser de HTML do navegador.
+    container.replaceChildren();
 
-    // Agrupar por categoria
     const grouped = topics.reduce((acc, topic) => {
         acc[topic.category] = acc[topic.category] || [];
         acc[topic.category].push(topic);
@@ -23,12 +64,11 @@ function renderTopics(topics) {
     }, {});
 
     for (const [category, items] of Object.entries(grouped)) {
-        // PREVENÇÃO XSS: Criação de elementos nativos ao invés de concatenação de strings HTML
         const section = document.createElement('div');
         section.className = 'category';
 
         const title = document.createElement('h2');
-        title.textContent = category; // textContent é imune a XSS
+        title.textContent = category; 
         section.appendChild(title);
 
         items.forEach(item => {
@@ -39,11 +79,11 @@ function renderTopics(topics) {
             checkbox.type = 'checkbox';
             checkbox.id = `topic-${item.id}`;
             checkbox.checked = item.is_completed;
-            checkbox.onchange = () => toggleTopic(item.id, checkbox.checked);
+            checkbox.addEventListener('change', () => toggleTopic(item.id, checkbox.checked));
 
             const label = document.createElement('label');
             label.htmlFor = `topic-${item.id}`;
-            label.textContent = item.title; // textContent é imune a XSS
+            label.textContent = item.title; 
 
             div.appendChild(checkbox);
             div.appendChild(label);
@@ -60,7 +100,10 @@ async function toggleTopic(id, isCompleted) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ is_completed: isCompleted })
     });
-    fetchTopics(); // Recarrega para atualizar progresso e estilos
+    
+    const topic = allTopics.find(t => t.id === id);
+    if(topic) topic.is_completed = isCompleted;
+    updateUI();
 }
 
 function updateProgress(topics) {

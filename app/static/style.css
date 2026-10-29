@@ -2,6 +2,8 @@
     --bg-color: #f4f7f6;
     --text-color: #333;
     --primary: #0056b3;
+    --sidebar-bg: #1c2b36;
+    --sidebar-hover: #2c3e50;
     --success: #28a745;
     --card-bg: #ffffff;
 }
@@ -10,7 +12,71 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: var(--bg-color);
     color: var(--text-color);
-    margin: 0; padding: 20px;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+/* Novo Layout com Sidebar */
+.app-layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 280px;
+    background-color: var(--sidebar-bg);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    height: 100vh;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+}
+
+.sidebar-header {
+    padding: 30px 20px;
+    background-color: rgba(0,0,0,0.2);
+    text-align: center;
+}
+
+.sidebar-header h2 { margin: 0; color: #fff; font-size: 1.5rem; }
+.sidebar-header p { margin: 5px 0 0 0; color: #aaa; font-size: 0.9rem; }
+
+.sidebar-nav {
+    padding: 20px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.nav-btn {
+    background: transparent;
+    color: #ccc;
+    border: none;
+    padding: 15px 20px;
+    text-align: left;
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.nav-btn:hover {
+    background-color: var(--sidebar-hover);
+    color: white;
+}
+
+.nav-btn.active {
+    background-color: var(--primary);
+    color: white;
+    font-weight: bold;
+}
+
+/* Container Principal ajustado */
+.main-content {
+    flex: 1;
+    margin-left: 280px;
+    padding: 40px 20px;
 }
 
 .container {
@@ -81,6 +147,9 @@ header {
     color: #888;
 }
 
-@media (max-width: 600px) {
-    .container { padding: 10px; }
+/* Responsividade Mobile */
+@media (max-width: 768px) {
+    .app-layout { flex-direction: column; }
+    .sidebar { width: 100%; height: auto; position: relative; }
+    .main-content { margin-left: 0; padding: 20px 10px; }
 }
