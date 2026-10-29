@@ -1,8 +1,7 @@
 from app.database import Base, SessionLocal, engine
 from app.models import Topic
 
-# Baseado no edital fornecido:
-SYLLABUS = {
+SYLLABUS_ESPECIFICOS = {
     "Governança e Gestão de TI": [
         "Planejamento Estratégico de TI alinhado ao negócio jurisdicional",
         "Instrumentos de gestão: PETI, PDTI, BSC, KGIs e OKRs",
@@ -58,22 +57,81 @@ SYLLABUS = {
     ],
 }
 
+SYLLABUS_GERAIS = {
+    "Língua Portuguesa e Raciocínio Analítico": [
+        "Redação Oficial, Ortografia e acentuação",
+        "Emprego do sinal indicativo de crase",
+        "Compreensão e interpretação de textos de gêneros variados",
+        "Denotação, conotação e relação do texto com contexto histórico",
+        "Discurso direto, indireto e indireto livre. Intertextualidade",
+        "Figuras de linguagem, Sinonímia e antonímia. Elementos de formação de palavras",
+        "Morfossintaxe, Pontuação, Pronomes",
+        "Concordância nominal e verbal, Flexão nominal e verbal",
+        "Vozes do verbo, Correlação de tempos e modos verbais",
+        "Regência nominal e verbal, Coordenação e subordinação. Conectivos",
+        "Coesão, coerência e Redação (organização e equivalência de orações)",
+        "Raciocínio analítico, argumentação e senso crítico",
+        "Tipos de argumentos: falaciosos e apelativos. Comunicação eficiente",
+    ],
+    "Raciocínio Lógico-Matemático": [
+        "Estrutura lógica de relações arbitrárias (pessoas, lugares, objetos)",
+        "Compreensão lógica via raciocínio verbal, matemático, espacial e temporal",
+        "Processo lógico de condução de hipóteses a conclusões",
+        "Proporcionalidade, porcentagem, regra de três, acréscimos e descontos",
+    ],
+    "Ética no Serviço Público e Integridade": [
+        "Ética e integridade: conceito, princípios, valores, moral e democracia",
+        "Regime Disciplinar (Lei nº 8.112/1990): deveres, proibições e penalidades",
+        "Improbidade e Anticorrupção (Leis nº 8.429/1992 e nº 12.846/2013)",
+        "Processo Administrativo (Lei nº 9.784/1999)",
+        "Código de Conduta e Comitê Gestor (JF3R)",
+        "Assédio, Discriminação e Diretrizes de Integridade (CNJ e JF3R)",
+        "LGPD e Lei de Acesso à Informação",
+    ],
+    "Direitos Humanos e Acessibilidade": [
+        "Teoria geral, Declaração Universal dos DH e Agenda 2030 (ONU)",
+        "Inclusão e direitos das pessoas com deficiência (Leis nº 13.146, 11.126, CF)",
+        "Promoção da acessibilidade e atendimento prioritário",
+    ],
+    "Informática, Inteligência Artificial e Inovação": [
+        "MS-Office 365 (Word, Excel, PowerPoint): formatação, macros, funções e apresentações",
+        "MS-Office 365 (OneDrive e SharePoint): nuvem, sincronização e colaboração",
+        "Correio Eletrônico e Microsoft Teams (reuniões e chat)",
+        "Segurança da Informação: confidencialidade, integridade e disponibilidade",
+        "Sistemas de IA, IA generativa, LLM e agentes. Riscos da IA",
+        "Diretrizes e Políticas de IA (Resoluções CNJ nºs 395, 615, 674, 647)",
+        "Inovação: redes, laboratórios, design thinking e inovação aberta",
+    ],
+    "Sustentabilidade e Meio Ambiente": [
+        "Desenvolvimento sustentável na CF/88 e ODS da ONU",
+        "Contratações sustentáveis (Lei nº 14.133/2021) e Política Nacional do Clima",
+        "Política de Sustentabilidade do Poder Judiciário e da Justiça Federal",
+    ],
+}
+
 
 def seed_db():
+    # Recria o banco de dados para adicionar a coluna "area"
+    Base.metadata.drop_all(bind=engine)
     Base.metadata.create_all(bind=engine)
+
     db = SessionLocal()
 
-    if db.query(Topic).first():
-        print("Banco já populado!")
-        return
-
-    for category, topics in SYLLABUS.items():
+    for category, topics in SYLLABUS_ESPECIFICOS.items():
         for t_title in topics:
-            db.add(Topic(category=category, title=t_title))
+            db.add(
+                Topic(
+                    area="Conhecimentos Específicos", category=category, title=t_title
+                )
+            )
+
+    for category, topics in SYLLABUS_GERAIS.items():
+        for t_title in topics:
+            db.add(Topic(area="Conhecimentos Gerais", category=category, title=t_title))
 
     db.commit()
     db.close()
-    print("Dados inseridos com sucesso!")
+    print("Banco recriado e dados das duas áreas inseridos com sucesso!")
 
 
 if __name__ == "__main__":
