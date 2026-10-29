@@ -4,6 +4,7 @@ from pydantic import BaseModel
 
 
 class TopicBase(BaseModel):
+    area: str
     category: str
     title: str
 
