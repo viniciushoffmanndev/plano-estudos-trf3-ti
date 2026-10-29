@@ -1,0 +1,35 @@
+# Ambientes Virtuais
+venv/
+env/
+.venv/
+
+# Variáveis de Ambiente e Credenciais
+.env
+.env.*
+*.pem
+secrets.json
+
+# Cache do Python e Compilados
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Ferramentas de Teste e Cobertura
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Banco de Dados local (caso use SQLite no futuro para testes)
+*.sqlite3
+*.db
+
+# Arquivos de IDE e Editores (VS Code, PyCharm, etc)
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Arquivos do Sistema Operacional
+.DS_Store
+Thumbs.db
