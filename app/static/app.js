@@ -1,13 +1,51 @@
 let allTopics = [];
-let currentArea = "Conhecimentos Específicos"; // Estado inicial
+let currentArea = "Conhecimentos Específicos";
 
-// Inicialização segura
+// Repositório de resumos vinculados diretamente pelo ID da base de dados
+const resumosTopicos = {
+    37: `
+        <summary>📘 Ver Resumo para Concurso</summary>
+        <div class="topic-details-content">
+            <p><strong>Objetivo:</strong> Criar a PDPJ-Br, plataforma que integra os sistemas eletrônicos de todos os tribunais brasileiros.</p>
+            <ul>
+                <li><strong>PJe:</strong> continua sendo o sistema prioritário do CNJ.</li>
+                <li><strong>Integração:</strong> reúne os sistemas judiciais em um ambiente unificado.</li>
+                <li><strong>Marketplace:</strong> compartilha gratuitamente aplicações, módulos e microsserviços.</li>
+                <li><strong>Desenvolvimento comunitário:</strong> tribunais colaboram e compartilham soluções.</li>
+                <li><strong>Tecnologia:</strong> utiliza microsserviços, computação em nuvem e código aberto (preferencial).</li>
+                <li><strong>Proibição:</strong> impede contratar sistemas privados que gerem dependência tecnológica.</li>
+                <li><strong>Segurança:</strong> conformidade obrigatória com a LGPD.</li>
+                <li><strong>Nuvem nacional:</strong> dados obrigatoriamente armazenados em datacenters no Brasil.</li>
+            </ul>
+            
+            <h4>📌 Artigos mais importantes para memorizar</h4>
+            <table>
+                <tr><td><strong>Art. 1º</strong></td><td>Criação da PDPJ-Br e prioridade do PJe</td></tr>
+                <tr><td><strong>Art. 2º</strong></td><td>Objetivos da plataforma</td></tr>
+                <tr><td><strong>Art. 3º</strong></td><td>Marketplace de soluções</td></tr>
+                <tr><td><strong>Art. 4º</strong></td><td>Requisitos tecnológicos e LGPD</td></tr>
+                <tr><td><strong>Art. 5º</strong></td><td>Proibição de dependência tecnológica</td></tr>
+                <tr><td><strong>Art. 7º</strong></td><td>Coordenação pelo CNJ</td></tr>
+                <tr><td><strong>Art. 14</strong></td><td>Nuvem e datacenter nacional</td></tr>
+                <tr><td><strong>Art. 15</strong></td><td>Manutenção e aprimoramento do PJe</td></tr>
+                <tr><td><strong>Art. 23</strong></td><td>Não se aplica a sistemas não relacionados a processo judicial</td></tr>
+            </table>
+
+            <div class="alert-box">
+                <strong>⚠️ Pegadinhas VUNESP:</strong><br>
+                1. A PDPJ-Br não obriga o abandono de outros sistemas, mas o PJe é prioritário.<br>
+                2. Código aberto é de uso preferencial, não impositivo.<br>
+                <em>Macete: PDPJ-Br = Integração + Microsserviços + Nuvem + Segurança + LGPD.</em>
+            </div>
+        </div>
+    `
+};
+
 document.addEventListener("DOMContentLoaded", () => {
     fetchTopics();
     setupEventListeners();
 });
 
-// SEGURANÇA OWASP: Separação de comportamento (JS) da estrutura (HTML)
 function setupEventListeners() {
     const btnEspecificos = document.getElementById("btnEspecificos");
     const btnGerais = document.getElementById("btnGerais");
@@ -34,11 +72,8 @@ async function fetchTopics() {
 function changeArea(area) {
     currentArea = area;
     
-    // Atualiza os botões visuais no sidebar
     document.getElementById("btnEspecificos").classList.toggle("active", area === "Conhecimentos Específicos");
     document.getElementById("btnGerais").classList.toggle("active", area === "Conhecimentos Gerais");
-    
-    // Atualiza o título (textContent é seguro contra XSS)
     document.getElementById("pageTitle").textContent = area;
     
     updateUI();
@@ -52,8 +87,6 @@ function updateUI() {
 
 function renderTopics(topics) {
     const container = document.getElementById('topicsContainer');
-    
-    // SEGURANÇA OWASP: Substitui container.innerHTML = ''; por replaceChildren()
     container.replaceChildren();
 
     const grouped = topics.reduce((acc, topic) => {
@@ -71,11 +104,9 @@ function renderTopics(topics) {
         section.appendChild(title);
 
         items.forEach(item => {
-            // Container principal do tópico
             const div = document.createElement('div');
             div.className = `topic-item ${item.is_completed ? 'completed' : ''}`;
 
-            // Wrapper para manter o checkbox e o label alinhados
             const headerWrapper = document.createElement('div');
             headerWrapper.className = 'topic-header';
 
@@ -93,45 +124,11 @@ function renderTopics(topics) {
             headerWrapper.appendChild(label);
             div.appendChild(headerWrapper);
 
-            // VERIFICAÇÃO ESPECÍFICA: Se o tópico for a Resolução CNJ 335/2020, anexa o resumo expansível
-            if (item.title.includes("Resolução CNJ nº 335/2020")) {
+            // Vinculação atômica por ID: elimina falhas de caracteres especiais ou encoding
+            if (resumosTopicos[item.id]) {
                 const details = document.createElement('details');
                 details.className = 'topic-details';
-                
-                // Usamos innerHTML aqui exclusivamente para montar o template estático (sem inputs do utilizador, logo, sem risco XSS)
-                details.innerHTML = `
-                    <summary>📘 Ver Resumo para Concurso</summary>
-                    <div class="topic-details-content">
-                        <p><strong>Objetivo:</strong> Criar a PDPJ-Br, plataforma que integra os sistemas eletrônicos de todos os tribunais brasileiros.</p>
-                        <ul>
-                            <li><strong>PJe:</strong> continua sendo o sistema prioritário do CNJ.</li>
-                            <li><strong>Integração:</strong> reúne os sistemas judiciais em um ambiente unificado.</li>
-                            <li><strong>Marketplace:</strong> compartilha gratuitamente aplicações, módulos e microsserviços.</li>
-                            <li><strong>Desenvolvimento comunitário:</strong> tribunais colaboram e compartilham soluções.</li>
-                            <li><strong>Tecnologia:</strong> utiliza microsserviços, computação em nuvem e código aberto.</li>
-                            <li><strong>Proibição:</strong> impede contratar sistemas privados que gerem dependência tecnológica.</li>
-                            <li><strong>Segurança:</strong> deve cumprir a LGPD, garantindo proteção dos dados.</li>
-                            <li><strong>Nuvem nacional:</strong> dados armazenados em datacenters no território brasileiro.</li>
-                        </ul>
-                        
-                        <h4>📌 Artigos mais importantes</h4>
-                        <table>
-                            <tr><td><strong>Art. 1º</strong></td><td>Criação da PDPJ-Br e prioridade do PJe</td></tr>
-                            <tr><td><strong>Art. 2º</strong></td><td>Objetivos da plataforma</td></tr>
-                            <tr><td><strong>Art. 3º</strong></td><td>Marketplace de soluções</td></tr>
-                            <tr><td><strong>Art. 4º</strong></td><td>Requisitos tecnológicos e LGPD</td></tr>
-                            <tr><td><strong>Art. 5º</strong></td><td>Proibição de dependência tecnológica</td></tr>
-                            <tr><td><strong>Art. 14</strong></td><td>Nuvem e datacenter nacional</td></tr>
-                            <tr><td><strong>Art. 23</strong></td><td>Não se aplica a sistemas não-judiciais</td></tr>
-                        </table>
-
-                        <div class="alert-box">
-                            <strong>⚠️ Pegadinhas VUNESP:</strong><br>
-                            A PDPJ-Br não obriga uso exclusivo do PJe, mas ele é prioritário. Código aberto é preferencial, não obrigatório.<br>
-                            <em>Macete: PDPJ-Br = Integração + Microsserviços + Nuvem + Segurança + LGPD.</em>
-                        </div>
-                    </div>
-                `;
+                details.innerHTML = resumosTopicos[item.id];
                 div.appendChild(details);
             }
 
@@ -150,12 +147,12 @@ async function toggleTopic(id, isCompleted) {
     });
     
     const topic = allTopics.find(t => t.id === id);
-    if(topic) topic.is_completed = isCompleted;
+    if (topic) topic.is_completed = isCompleted;
     updateUI();
 }
 
 function updateProgress(topics) {
-    if(topics.length === 0) return;
+    if (topics.length === 0) return;
     const completed = topics.filter(t => t.is_completed).length;
     const percentage = Math.round((completed / topics.length) * 100);
     
