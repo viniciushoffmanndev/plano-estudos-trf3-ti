@@ -54,7 +54,6 @@ function renderTopics(topics) {
     const container = document.getElementById('topicsContainer');
     
     // SEGURANÇA OWASP: Substitui container.innerHTML = ''; por replaceChildren()
-    // Isso é mais seguro e performático, pois não invoca o parser de HTML do navegador.
     container.replaceChildren();
 
     const grouped = topics.reduce((acc, topic) => {
@@ -72,8 +71,13 @@ function renderTopics(topics) {
         section.appendChild(title);
 
         items.forEach(item => {
+            // Container principal do tópico
             const div = document.createElement('div');
             div.className = `topic-item ${item.is_completed ? 'completed' : ''}`;
+
+            // Wrapper para manter o checkbox e o label alinhados
+            const headerWrapper = document.createElement('div');
+            headerWrapper.className = 'topic-header';
 
             const checkbox = document.createElement('input');
             checkbox.type = 'checkbox';
@@ -85,8 +89,52 @@ function renderTopics(topics) {
             label.htmlFor = `topic-${item.id}`;
             label.textContent = item.title; 
 
-            div.appendChild(checkbox);
-            div.appendChild(label);
+            headerWrapper.appendChild(checkbox);
+            headerWrapper.appendChild(label);
+            div.appendChild(headerWrapper);
+
+            // VERIFICAÇÃO ESPECÍFICA: Se o tópico for a Resolução CNJ 335/2020, anexa o resumo expansível
+            if (item.title.includes("Resolução CNJ nº 335/2020")) {
+                const details = document.createElement('details');
+                details.className = 'topic-details';
+                
+                // Usamos innerHTML aqui exclusivamente para montar o template estático (sem inputs do utilizador, logo, sem risco XSS)
+                details.innerHTML = `
+                    <summary>📘 Ver Resumo para Concurso</summary>
+                    <div class="topic-details-content">
+                        <p><strong>Objetivo:</strong> Criar a PDPJ-Br, plataforma que integra os sistemas eletrônicos de todos os tribunais brasileiros.</p>
+                        <ul>
+                            <li><strong>PJe:</strong> continua sendo o sistema prioritário do CNJ.</li>
+                            <li><strong>Integração:</strong> reúne os sistemas judiciais em um ambiente unificado.</li>
+                            <li><strong>Marketplace:</strong> compartilha gratuitamente aplicações, módulos e microsserviços.</li>
+                            <li><strong>Desenvolvimento comunitário:</strong> tribunais colaboram e compartilham soluções.</li>
+                            <li><strong>Tecnologia:</strong> utiliza microsserviços, computação em nuvem e código aberto.</li>
+                            <li><strong>Proibição:</strong> impede contratar sistemas privados que gerem dependência tecnológica.</li>
+                            <li><strong>Segurança:</strong> deve cumprir a LGPD, garantindo proteção dos dados.</li>
+                            <li><strong>Nuvem nacional:</strong> dados armazenados em datacenters no território brasileiro.</li>
+                        </ul>
+                        
+                        <h4>📌 Artigos mais importantes</h4>
+                        <table>
+                            <tr><td><strong>Art. 1º</strong></td><td>Criação da PDPJ-Br e prioridade do PJe</td></tr>
+                            <tr><td><strong>Art. 2º</strong></td><td>Objetivos da plataforma</td></tr>
+                            <tr><td><strong>Art. 3º</strong></td><td>Marketplace de soluções</td></tr>
+                            <tr><td><strong>Art. 4º</strong></td><td>Requisitos tecnológicos e LGPD</td></tr>
+                            <tr><td><strong>Art. 5º</strong></td><td>Proibição de dependência tecnológica</td></tr>
+                            <tr><td><strong>Art. 14</strong></td><td>Nuvem e datacenter nacional</td></tr>
+                            <tr><td><strong>Art. 23</strong></td><td>Não se aplica a sistemas não-judiciais</td></tr>
+                        </table>
+
+                        <div class="alert-box">
+                            <strong>⚠️ Pegadinhas VUNESP:</strong><br>
+                            A PDPJ-Br não obriga uso exclusivo do PJe, mas ele é prioritário. Código aberto é preferencial, não obrigatório.<br>
+                            <em>Macete: PDPJ-Br = Integração + Microsserviços + Nuvem + Segurança + LGPD.</em>
+                        </div>
+                    </div>
+                `;
+                div.appendChild(details);
+            }
+
             section.appendChild(div);
         });
 

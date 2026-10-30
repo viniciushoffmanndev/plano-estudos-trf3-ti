@@ -153,3 +153,86 @@ header {
     .sidebar { width: 100%; height: auto; position: relative; }
     .main-content { margin-left: 0; padding: 20px 10px; }
 }
+
+/* ========================================================
+   ESTILOS PARA A LISTA SUSPENSA DE RESUMOS (DETAILS)
+   ======================================================== */
+.topic-item {
+    display: flex;
+    flex-direction: column; /* Alterado para permitir conteúdo abaixo do título */
+    align-items: flex-start;
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.topic-header {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.topic-details {
+    width: 100%;
+    margin-top: 10px;
+    background-color: var(--bg-color);
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.topic-details summary {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--primary);
+    cursor: pointer;
+    padding: 10px 15px;
+    background-color: #e8f0fe;
+    transition: background-color 0.2s;
+    outline: none;
+}
+
+.topic-details summary:hover {
+    background-color: #d2e3fc;
+}
+
+.topic-details-content {
+    padding: 15px;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: #444;
+}
+
+.topic-details-content ul {
+    margin-top: 5px;
+    padding-left: 20px;
+}
+
+.topic-details-content h4 {
+    margin: 15px 0 8px 0;
+    color: var(--sidebar-bg);
+}
+
+.topic-details-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 15px;
+}
+
+.topic-details-content table td {
+    padding: 8px;
+    border: 1px solid #cbd5e1;
+    font-size: 0.85rem;
+}
+
+.topic-details-content table tr:nth-child(even) {
+    background-color: #fff;
+}
+
+.alert-box {
+    background-color: #fef3c7;
+    border-left: 4px solid #f59e0b;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    color: #92400e;
+}
