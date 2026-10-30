@@ -253,7 +253,110 @@ const resumosTopicos = {
                 6. <strong>Atualização das Normas (Art. 4º Port. 162):</strong> Pode ocorrer a qualquer tempo por provocação do Comitê Gestor (não é ato exclusivo do Plenário do CNJ).
             </div>
         </div>
-    `
+    `,
+    // -----------------------------------------------------
+    // TÓPICO 40: Portaria CNJ nº 131/2021
+    // -----------------------------------------------------
+    40: `
+        <summary>📘 Ver Resumo para Concurso (Portaria 131/2021 - Código-Fonte e Revisão por Pares)</summary>
+        <div class="topic-details-content">
+            <h4 style="margin-top: 0; color: var(--primary); border-bottom: 2px solid #cbd5e1; padding-bottom: 6px;">
+                🔍 Portaria CNJ nº 131/2021: Grupo Revisor de Código-Fonte da PDPJ-Br e PJe
+            </h4>
+            <p><strong>Objetivo:</strong> Institui o colegiado técnico responsável pela garantia da qualidade (QA) e revisão por pares (Peer Review) das soluções de software judiciário nacional (em cumprimento à Res. 335/2020 e Portaria 252/2020).</p>
+
+            <p><strong>1. Natureza, Caráter e Limites (Arts. 1º, 3º e 8º):</strong></p>
+            <ul>
+                <li><strong>Caráter Honorífico (Art. 1º, Parágrafo único):</strong> Atuação não remunerada (sem gratificação ou hora extra).</li>
+                <li><strong>Colegiado Permanente (Art. 8º):</strong> Não se trata de comissão temporária.</li>
+                <li><strong>Limitação Decisória Crítica (Art. 3º, III):</strong> O grupo realiza benchmarking e testes comparativos entre soluções concorrentes, mas <strong>NÃO escolhe projetos</strong> (a decisão gerencial/política cabe à Gerência Executiva da PDPJ-Br).</li>
+            </ul>
+
+            <p><strong>2. Composição e Coordenação (Arts. 2º, 4º e 5º):</strong></p>
+            <table>
+                <thead>
+                    <tr style="background-color: #e2e8f0;">
+                        <th>Segmento / Origem</th>
+                        <th>Quantitativo Mínimo</th>
+                        <th>Base Legal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Coordenação / Membros Natos</strong></td>
+                        <td>Servidores da Divisão do PJe (DPJe/CNJ)</td>
+                        <td>Art. 2º, § 4º e Art. 4º</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Justiça Estadual (TJs)</strong></td>
+                        <td><strong>5 ou mais</strong> servidores indicados pelos TJs</td>
+                        <td>Art. 5º, I</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Justiça Federal (TRFs)</strong></td>
+                        <td><strong>5 ou mais</strong> servidores indicados pelo CJF</td>
+                        <td>Art. 5º, II</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Justiça Eleitoral (TREs)</strong></td>
+                        <td><strong>5 ou mais</strong> servidores indicados pelo TSE</td>
+                        <td>Art. 5º, III</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Justiça do Trabalho (TRTs)</strong></td>
+                        <td><strong>5 ou mais</strong> servidores indicados pelo CSJT</td>
+                        <td>Art. 5º, IV</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p style="font-size: 0.85rem; color: #64748b; margin-top: 4px;">
+                <em>Perfil: experiência em desenvolvimento de software e preferencialmente servidores efetivos (Art. 2º, § 1º).</em>
+            </p>
+
+            <p><strong>3. Pipeline de Aceite de Código: Do Linter ao Merge (Arts. 3º e 6º):</strong></p>
+            <pre style="background: #f1f5f9; padding: 12px; border-radius: 6px; font-size: 0.8rem; overflow-x: auto; line-height: 1.4; border: 1px solid #cbd5e1;">
+[Desenvolvedor / Tribunal de Origem]
+               │
+               ▼
+┌──────────────────────────────────────────────┐
+│  1. Análise Automatizada Prévia de CI        │ (Art. 3º, § 1º)
+│  (Linters, métricas de complexidade e SAST)  │
+└──────────────────────┬───────────────────────┘
+                       │
+       ┌───────────────┴───────────────┐
+       ▼ Reprovado no índice           ▼ Aprovado nos índices mínimos
+┌──────────────────────┐    ┌─────────────────────────────────────────┐
+│ Rejeição Sumária     │    │ 2. Encaminhamento à Sprint Quinzenal    │ (Art. 6º, § 1º)
+│ (Art. 3º, § 2º)      │    └────────────────────┬────────────────────┘
+└──────────────────────┘                         │
+                                                 ▼
+                            ┌─────────────────────────────────────────┐
+                            │ 3. Aprovação por no mínimo 1 TRIBUNAL   │ (Art. 6º, § 2º)
+                            │ DISTINTO daquele que desenvolveu + teste│
+                            └────────────────────┬────────────────────┘
+                                                 │
+                                                 ▼
+                                    [Merge Request Concluído]
+            </pre>
+
+            <ul>
+                <li><strong>Rejeição Sumária (Art. 3º, § 2º):</strong> Se não atingir os índices automatizados de linter, testes e complexidade, o código é rejeitado antes de chegar aos revisores humanos.</li>
+                <li><strong>Sprints Quinzenais (Art. 6º, § 1º):</strong> Ciclo de trabalho virtual realizado a cada <strong>15 dias</strong>.</li>
+                <li><strong>Aprovação Cruzada Obrigatória (Art. 6º, § 2º):</strong> O merge request exige a aprovação de pelo menos <strong>um tribunal distinto</strong> do desenvolvedor da solução, com comprovação dos testes executados.</li>
+                <li><strong>Regra de Sobrestamento (Art. 6º, § 4º):</strong> Demandas não analisadas na sprint corrente vão para a seguinte com <strong>prioridade obrigatória</strong> sobre novas requisições.</li>
+                <li><strong>Custódia Centralizada (Art. 7º):</strong> Todas as evidências, revisões e documentações ficam guardadas em repositório sob custódia do CNJ.</li>
+            </ul>
+
+            <div class="alert-box">
+                <strong>⚠️ Pegadinhas Literais da VUNESP:</strong><br>
+                1. <strong>Sem Remuneração:</strong> Função de caráter estritamente honorífico (não há gratificação de função).<br>
+                2. <strong>Quem aprova o Merge:</strong> Não é exclusivo do CNJ; exige aprovação de pelo menos um <em>tribunal diferente</em> do proponente.<br>
+                3. <strong>Sem Escolha de Projeto:</strong> O grupo não decide substituição política de softwares; limita-se a pareceres técnicos e benchmarking.<br>
+                4. <strong>Periodicidade das Sprints:</strong> São <em>quinzenais</em> (15 dias), e não mensais.<br>
+                5. <strong>Composição:</strong> <em>5 ou mais servidores</em> por ramo da Justiça (TJs, CJF, TSE e CSJT).
+            </div>
+        </div>
+    `,
 };
 
 document.addEventListener("DOMContentLoaded", () => {
