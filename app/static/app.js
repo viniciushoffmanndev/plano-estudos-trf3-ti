@@ -357,6 +357,79 @@ const resumosTopicos = {
             </div>
         </div>
     `,
+    // -----------------------------------------------------
+    // TÓPICO 38: Resolução CNJ nº 522/2023 (MoReq-Jus)
+    // -----------------------------------------------------
+    38: `
+        <summary>📘 Ver Resumo para Concurso (Resolução 522/2023 - MoReq-Jus)</summary>
+        <div class="topic-details-content">
+            <h4 style="margin-top: 0; color: var(--primary); border-bottom: 2px solid #cbd5e1; padding-bottom: 6px;">
+                📑 Resolução CNJ nº 522/2023: Novo MoReq-Jus
+            </h4>
+            <p><strong>Objetivo:</strong> Aprova a versão atualizada do Modelo de Requisitos para Sistemas Informatizados de Gestão de Processos e Documentos do Poder Judiciário (MoReq-Jus) e <strong>revoga expressamente a Resolução CNJ nº 91/2009</strong> (Art. 10). Articula-se diretamente com a PDPJ-Br (Res. 335), Proname (Res. 324) e Cibersegurança (Res. 396).</p>
+
+            <p><strong>1. Escopo Arquitetural e Atributos de Segurança (Arts. 1º e 2º):</strong></p>
+            <ul>
+                <li><strong>Abrangência Total:</strong> Aplica-se às atividades judiciais (área-fim) e administrativas (área-meio) de todo o Poder Judiciário.</li>
+                <li><strong>Arquitetura Moderna:</strong> Obrigatoriedade explícita mesmo para aplicações segmentadas em módulos e <strong>microsserviços</strong>.</li>
+                <li><strong>Septeto de Proteção (Art. 2º):</strong> Confidencialidade, Integridade, Disponibilidade, Autenticidade, Não repúdio, Conformidade e Preservação.</li>
+            </ul>
+
+            <p><strong>2. Regra de Conflito de Requisitos e PDPJ-Br (Art. 3º):</strong></p>
+            <ul>
+                <li><strong>Regra de Ouro (Art. 3º, § 1º):</strong> Em caso de colisão entre requisitos, os <strong>requisitos não funcionais de segurança prevalecem obrigatoriamente</strong> sobre requisitos funcionais negociais ou prazos.</li>
+                <li><strong>Requisito de Entrada (Art. 3º, § 2º):</strong> A conformidade com o MoReq-Jus é condição obrigatória para ingresso de qualquer módulo no catálogo da PDPJ-Br.</li>
+            </ul>
+
+            <p><strong>3. Escalonamento Progressivo de Prazos (Arts. 5º, 6º e 8º):</strong></p>
+            <table>
+                <thead>
+                    <tr style="background-color: #e2e8f0;">
+                        <th>Prazo</th>
+                        <th>Obrigação Legal</th>
+                        <th>Base Legal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Até 1 ano</strong></td>
+                        <td>Recebimento, armazenamento e envio de <strong>100% dos metadados</strong> + informe inicial de cumprimento.</td>
+                        <td>Art. 6º, I e Art. 5º, § 2º</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Até 2 anos</strong></td>
+                        <td>Adequação integral aos <strong>Requisitos Funcionais</strong>.</td>
+                        <td>Art. 6º, II</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Até 3 anos</strong></td>
+                        <td>Adequação integral aos <strong>Requisitos Não Funcionais</strong>.</td>
+                        <td>Art. 6º, III</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p style="font-size: 0.85rem; color: #64748b; margin-top: 4px;">
+                <em>Gatilho Temporal (Art. 8º): Os prazos de 1, 2 e 3 anos só correm após a publicação oficial dos instrumentos de avaliação pelo CNJ (que tem até 12 meses para publicá-los).</em>
+            </p>
+
+            <p><strong>4. Governança e Preservação Digital (Arts. 4º, 5º e 7º):</strong></p>
+            <ul>
+                <li><strong>Programa MoReq-Aval (Art. 4º, § 1º):</strong> Avaliação contínua conduzida pelo DTI/CNJ com apoio do Comitê do Proname.</li>
+                <li><strong>Sistemas Cedidos/Terceiros (Art. 5º, § 1º):</strong> Tribunais que usam PJe, SEI ou sistemas contratados respondem formalmente pela comprovação de conformidade.</li>
+                <li><strong>Vedação ao Retrocesso (Art. 7º, § 1º):</strong> Proibida a troca por sistema menos aderente. Qualquer alteração exige estudo técnico conjunto entre o <em>Gestor de TI</em> e o <em>Gestor de Gestão Documental</em>.</li>
+                <li><strong>Guarda Longa/Permanente (Art. 7º, § 2º):</strong> Obrigatoriedade legal de recolhimento em <strong>RDC-Arq</strong> (Repositório Arquivístico Digital Confiável).</li>
+            </ul>
+
+            <div class="alert-box">
+                <strong>⚠️ ARMADILHAS LITERAIS PARA A VUNESP:</strong><br>
+                1. <strong>Revogação Histórica:</strong> A Resolução CNJ nº 91/2009 foi <em>revogada expressamente</em> (Art. 10).<br>
+                2. <strong>Hierarquia de Requisitos:</strong> Requisitos <em>Não Funcionais de Segurança</em> vencem qualquer requisito funcional.<br>
+                3. <strong>Ordem Temporal dos Prazos:</strong> Memorize <em>1 ano = Metadados (100%)</em> ➔ <em>2 anos = Funcionais</em> ➔ <em>3 anos = Não Funcionais</em>.<br>
+                4. <strong>Repositório Seguro:</strong> A norma exige textualmente <strong>RDC-Arq</strong> (não confunda com storage ou cloud comum).<br>
+                5. <strong>Concursos Públicos (Art. 9º):</strong> O MoReq-Jus é de inclusão obrigatória nos editais de concurso de TI e gestão documental do Judiciário.
+            </div>
+        </div>
+    `,
 };
 
 document.addEventListener("DOMContentLoaded", () => {
