@@ -4,28 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Plano de Estudos TRF3 - TI</title>
-    <link rel="stylesheet" href="/style.css">
+    <!-- Query parameter (?v=2) força o navegador a invalidar o cache antigo -->
+    <link rel="stylesheet" href="/style.css?v=2">
 </head>
 <body>
     <div class="app-layout">
-        <!-- Sidebar -->
         <aside class="sidebar">
             <div class="sidebar-header">
                 <h2>TRF3 TI</h2>
                 <p>Plano de Estudos</p>
             </div>
             <nav class="sidebar-nav">
-                <!-- SEGURANÇA OWASP: Removido o onclick inline. Uso de data-area -->
+                <!-- Contagens sincronizadas com o banco real: 41 Específicos e 37 Gerais -->
                 <button id="btnEspecificos" class="nav-btn active" data-area="Conhecimentos Específicos">
-                    Conhecimentos Específicos (36)
+                    Conhecimentos Específicos (41)
                 </button>
                 <button id="btnGerais" class="nav-btn" data-area="Conhecimentos Gerais">
-                    Conhecimentos Gerais (24)
+                    Conhecimentos Gerais (37)
                 </button>
             </nav>
         </aside>
 
-        <!-- Main Content -->
         <div class="main-content">
             <div class="container">
                 <header>
@@ -41,6 +40,7 @@
             </div>
         </div>
     </div>
-    <script src="/app.js"></script>
+    <!-- Query parameter (?v=2) força a recarga imediata do script atualizado -->
+    <script src="/app.js?v=2"></script>
 </body>
 </html>
