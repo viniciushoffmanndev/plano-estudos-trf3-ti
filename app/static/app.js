@@ -99,6 +99,160 @@ const resumosTopicos = {
                 • <em>Preferencial/Incentivado:</em> Java/Spring Boot, DDD, CD (Deploy Contínuo), TDD.
             </div>
         </div>
+    `,
+    // -----------------------------------------------------
+    // TÓPICO 41: Resolução CNJ nº 396/2021 e Portaria CNJ 162/2021
+    // -----------------------------------------------------
+    41: `
+        <summary>📘 Ver Resumo para Concurso (Segurança Cibernética: Res. 396 e Port. 162)</summary>
+        <div class="topic-details-content">
+            
+            <!-- PARTE 1: RESOLUÇÃO CNJ 396/2021 -->
+            <h4 style="margin-top: 0; color: var(--primary); border-bottom: 2px solid #cbd5e1; padding-bottom: 6px;">
+                🛡️ PARTE 1: Resolução CNJ nº 396/2021 (ENSEC-PJ e PSEC-PJ)
+            </h4>
+            <p><strong>Escopo:</strong> Institui a Estratégia Nacional e a Política de Segurança Cibernética do Poder Judiciário. Abrange segurança física e lógica, garantia dos atributos CIDA (Confidencialidade, Integridade, Disponibilidade e Autenticidade) e continuidade de negócios.</p>
+
+            <p><strong>1. Âmbito e Exceção Obrigatória (Art. 1º):</strong> Aplica-se a todo o Poder Judiciário, <strong>EXCETO AO SUPREMO TRIBUNAL FEDERAL (STF)</strong>.</p>
+
+            <p><strong>2. Proteção a Infraestruturas Críticas (Art. 11):</strong></p>
+            <ul>
+                <li><strong>Periodicidade de Testes (Art. 11, X):</strong> Avaliação e testes de conformidade em segurança ao menos <strong>semestralmente</strong>.</li>
+                <li><strong>Equipe Técnica (Art. 11, II):</strong> Obrigatoriedade de instituir e manter equipe <strong>ETIR própria</strong> em cada tribunal.</li>
+                <li><strong>Backups (Art. 11, VI):</strong> Atualizados, segregados de forma automática e gravados em formato que viabilize análise forense.</li>
+                <li><strong>Logs (Art. 11, IV):</strong> Análise consolidada de registros de auditoria em múltiplas fontes para automação de respostas.</li>
+                <li><strong>Teletrabalho e MFA (Art. 11, VIII e IX):</strong> Requisitos formais para trabalho remoto e obrigatoriedade de <strong>duplo fator de autenticação (MFA)</strong> em acessos externos e novos sistemas.</li>
+                <li><strong>Contenção Rápida (Art. 8º, Parágrafo único):</strong> Prerrogativa da Alta Administração de suspender o acesso público a sistemas para conter incidentes graves.</li>
+            </ul>
+
+            <p><strong>3. Governança e a "Pegadinha de Ouro" (Art. 21):</strong></p>
+            <ul>
+                <li>A estrutura de Segurança da Informação deve ser subordinada diretamente à <strong>Alta Administração</strong> e <strong>DESVINCULADA DA ÁREA DE TIC</strong> (proibida subordinação ao diretor de TI para evitar conflito de interesses).</li>
+                <li><strong>Orçamento Específico (Art. 31):</strong> Despesas em cibersegurança devem constar em rubrica orçamentária própria.</li>
+            </ul>
+
+            <p><strong>4. Instâncias Colegiadas e Operacionais:</strong></p>
+            <table>
+                <thead>
+                    <tr style="background-color: #e2e8f0;">
+                        <th>Instância</th>
+                        <th>Âmbito</th>
+                        <th>Atribuição Central</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>CGSI-PJ</strong> (Art. 14)</td>
+                        <td>Nacional (CNJ)</td>
+                        <td>Comitê Gestor: assessora o CNJ e define diretrizes. Reúne-se <strong>semestralmente</strong>.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>CGSI Local</strong> (Art. 20)</td>
+                        <td>Tribunal</td>
+                        <td>Comitê de Governança interno: assessora a Presidência local e prioriza riscos.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>CPTRIC-PJ</strong> (Art. 18)</td>
+                        <td>Nacional (CNJ)</td>
+                        <td>Centro central do CNJ: recebe a <strong>notificação compulsória</strong> de incidentes do país.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ETIR</strong> (Art. 19)</td>
+                        <td>Tribunal</td>
+                        <td>Equipe de Resposta técnica local na ponta, federada ao CPTRIC-PJ.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p><strong>5. Os 4 Instrumentos Oficiais da PSEC-PJ (Arts. 25 a 27):</strong></p>
+            <ol>
+                <li><strong>ENSEC-PJ:</strong> Estratégia macro e metas.</li>
+                <li><strong>PPINC-PJ:</strong> Protocolo de Prevenção de Incidentes (diretrizes proativas).</li>
+                <li><strong>PGCC-PJ:</strong> Protocolo de Gerenciamento de Crises (acionado em alto impacto; convoca o Comitê de Crise).</li>
+                <li><strong>PIILC-PJ:</strong> Protocolo de Investigação de Ilícitos (cadeia de custódia e envio à polícia/MP).</li>
+            </ol>
+            <p><em>Tripé da Gestão de Usuários (Art. 29): Identidades, Acessos e Privilégios (convergindo para login único).</em></p>
+
+            <!-- PARTE 2: PORTARIA CNJ 162/2021 -->
+            <h4 style="margin-top: 30px; color: var(--primary); border-bottom: 2px solid #cbd5e1; padding-bottom: 6px;">
+                ⚙️ PARTE 2: Portaria CNJ nº 162/2021 (Padronização Operacional e Anexos)
+            </h4>
+            <p><strong>Finalidade:</strong> Regulamenta operacionalmente a Res. 396/2021 (Arts. 25, § 2º e 26), incorporando ISO 27001, ISO 27005, Normas do GSI/PR (04, 06, 08 e 21) e ENTIC-JUD (Res. 370/2021).</p>
+
+            <p><strong>Estrutura Completa dos 8 Anexos (Arts. 1º a 3º):</strong></p>
+            <table>
+                <thead>
+                    <tr style="background-color: #e2e8f0;">
+                        <th>Anexo</th>
+                        <th>Tipo</th>
+                        <th>Nome do Documento</th>
+                        <th>Foco Operacional</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Anexo I</strong></td>
+                        <td>Protocolo</td>
+                        <td><strong>PPINC-PJ</strong> (Prevenção)</td>
+                        <td>Higiene cibernética, gestão de vulnerabilidades e defesa ativa.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Anexo II</strong></td>
+                        <td>Protocolo</td>
+                        <td><strong>PGCRC-PJ</strong> (Crises)</td>
+                        <td>Incidentes de larga escala; acionamento obrigatório do Comitê de Crise.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Anexo III</strong></td>
+                        <td>Protocolo</td>
+                        <td><strong>PIILC-PJ</strong> (Ilícitos)</td>
+                        <td>Forense digital, preservação de provas e apoio à persecução penal.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Anexo IV</strong></td>
+                        <td>Manual</td>
+                        <td>Proteção de Infraestruturas Críticas</td>
+                        <td>Tolerância a falhas, resiliência, redundância física/lógica de datacenters.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Anexo V</strong></td>
+                        <td>Manual</td>
+                        <td>Ameaças e Confiança Digital</td>
+                        <td>Inteligência contra ameaças avançadas, criptografia e assinatura digital.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Anexo VI</strong></td>
+                        <td>Manual</td>
+                        <td>Gestão de Identidades</td>
+                        <td>Tripé (identidades, acessos e privilégios), SSO e MFA obrigatório.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Anexo VII</strong></td>
+                        <td>Manual</td>
+                        <td>Educação e Cultura</td>
+                        <td>Treinamento continuado, combate a phishing e engenharia social.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Anexo VIII</strong></td>
+                        <td>Glossário</td>
+                        <td>Glossário Técnico</td>
+                        <td>Padronização semântica e terminológica obrigatória no Judiciário.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="alert-box">
+                <strong>⚠️ PONTOS CRÍTICOS PARA A VUNESP (PEGADINHAS RECORRENTES):</strong><br>
+                1. <strong>Exceção do STF (Art. 1º Res. 396 / Art. 5º Port. 162):</strong> Todo o Poder Judiciário adota obrigatoriamente, <em>com exceção do STF</em>.<br>
+                2. <strong>Independência da Segurança (Art. 21 Res. 396):</strong> Segurança da Informação é subordinada à <em>Alta Administração</em> e <em>DESVINCULADA de TIC</em>.<br>
+                3. <strong>Vigência Fracionada da Portaria 162 (Art. 7º):</strong><br>
+                   • <em>Vigência IMEDIATA:</em> Protocolos (Anexos I, II e III — PPINC-PJ, PGCRC-PJ e PIILC-PJ).<br>
+                   • <em>Vacatio legis de 120 dias:</em> Manuais de Referência (Anexos IV a VII).<br>
+                4. <strong>Testes de Segurança (Art. 11, X Res. 396):</strong> Periodicidade mínima <em>semestral</em> (não anual).<br>
+                5. <strong>Reunião do CGSI-PJ (Art. 16 Res. 396):</strong> Periodicidade ordinária <em>semestral</em>.<br>
+                6. <strong>Atualização das Normas (Art. 4º Port. 162):</strong> Pode ocorrer a qualquer tempo por provocação do Comitê Gestor (não é ato exclusivo do Plenário do CNJ).
+            </div>
+        </div>
     `
 };
 
